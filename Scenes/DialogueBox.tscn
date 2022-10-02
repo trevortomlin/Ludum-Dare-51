@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Art/dialogueninepatchrect.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/DialogueBox.gd" type="Script" id=2]
+[ext_resource path="res://Art/human_portrait.png" type="Texture" id=3]
+
+[node name="Dialogue" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 2 )
+dialogue_file = "res://Dialogue/test_dialogue.json"
+
+[node name="DialogueBox" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 421.0
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 9, 9 )
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Name" type="RichTextLabel" parent="DialogueBox"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 50.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Name"
+fit_content_height = true
+
+[node name="Message" type="RichTextLabel" parent="DialogueBox"]
+margin_left = 10.0
+margin_top = 50.0
+margin_right = 1014.0
+margin_bottom = 169.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Message"
+fit_content_height = true
+
+[node name="TextureRect" type="TextureRect" parent="DialogueBox"]
+margin_top = -222.0
+margin_right = 225.0
+margin_bottom = 3.0
+texture = ExtResource( 3 )
+expand = true

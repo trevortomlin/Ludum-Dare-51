@@ -27,6 +27,9 @@ func _ready():
 		start_pos = global_position
 	
 func _process(delta):
+	
+	if target: current_state = States.Chase
+	
 	match current_state:
 		States.Idle:
 			idle()
@@ -39,7 +42,7 @@ func _process(delta):
 
 func idle():
 	if global_position != start_pos:
-		print(global_position, start_pos)
+		#print(global_position, start_pos)
 		velocity = (start_pos - global_position).normalized() * move_speed
 		velocity = move_and_slide(velocity)
 

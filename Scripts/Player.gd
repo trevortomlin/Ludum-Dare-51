@@ -13,11 +13,22 @@ var current_state = States.Human
 onready var sprite_node := $Sprite
 onready var collision_shape := $CollisionShape2D
 
-var human_sprite = preload("res://Art/kenney_tinydungeon/Tiles/tile_0096.png")
-var snail_sprite = preload("res://Art/kenney_tinydungeon/Tiles/tile_0121.png")
+#var human_sprite = preload("res://Art/kenney_tinydungeon/Tiles/tile_0096.png")
+#var snail_sprite = preload("res://Art/kenney_tinydungeon/Tiles/tile_0121.png")
+
+var human_frames = preload("res://Resources/PlayerSpriteFrames.tres")
+var snail_frames = preload("res://Resources/SnailSpriteFrames.tres")
+	
+#var human_sprite = preload("res://Art/human.png")
+#var snail_sprite = preload("res://Art/snail_1.png")
 
 var onvent := false
 var can_move := true
+var dead = false
+
+var snail_walk = false
+
+var accum_delta = 0.0
 
 func _ready():
 	Events.connect("ten_second_timeout", self, "switch_states")
@@ -25,7 +36,10 @@ func _ready():
 	Events.connect("enter_vent", self, "enter_vent")
 
 func die():
-	get_tree().reload_current_scene()
+	can_move = false
+	dead = true
+	#yield(get_tree().create_timer(5), "timeout")
+	#get_tree().reload_current_scene()
 
 func get_input():
 	velocity = Vector2()
@@ -41,8 +55,26 @@ func get_input():
 	sprite_node.flip_h = velocity.x < 0
 	
 	velocity = velocity.normalized()
+	
+	if velocity == Vector2.ZERO:
+		sprite_node.play("Idle")
+		snail_walk = false
+	else:
+		if current_state != States.Snail:
+			sprite_node.play("Walking")
+			snail_walk = false
+		else:
+			snail_walk = true
 
 func _physics_process(delta):
+
+	accum_delta += delta
+	
+	if snail_walk:
+		#print(sin(accum_delta))
+		sprite_node.scale.x += sin(accum_delta * 10) * .003
+	
+	if dead: return
 	
 	if Input.is_action_pressed("interact") and onvent and can_move:
 		Events.emit_signal("interact")
@@ -80,15 +112,29 @@ func move(speed):
 	velocity = move_and_slide(velocity * speed)
 
 func switch_states():
+	can_move = false
+	yield(get_tree().create_timer(1), "timeout")
+	can_move = true
+	
 	if current_state == States.Human:
+		collision_shape.rotate(PI/2)
+		#swap_collision_shape()
 		current_state = States.Snail
+		sprite_node.set_sprite_frames(snail_frames)
 	else:
+		#wap_collision_shape()
+		collision_shape.rotate(-PI/2)
 		current_state = States.Human
+		sprite_node.set_sprite_frames(human_frames)
+
+#func swap_collision_shape():
+#	collision_shape.rotate(PI/2)
+	
 
 func human_state():
-	sprite_node.texture = human_sprite
+	#sprite_node.texture = human_sprite
 	move(human_speed)
 
 func snail_state():
-	sprite_node.texture = snail_sprite
+	#sprite_node.texture = snail_sprite
 	move(snail_speed)

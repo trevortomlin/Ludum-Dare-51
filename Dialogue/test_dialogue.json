@@ -1,0 +1,5 @@
+[
+{"name":"Trevor", "message":"This is a test message.", "portrait":"Human"},
+{"name":"Ryan", "message":"Very cool message.", "portrait": "Snail"},
+{"name":"Trevor", "message":"Nice", "portrait":"Human"}
+]
