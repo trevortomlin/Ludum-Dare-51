@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/StartScreen.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/neuropol/NEUROPOL.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Resources/Font16.tres" type="DynamicFont" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 82
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -21,10 +30,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 396.0
-margin_top = 44.0
-margin_right = 588.0
-margin_bottom = 250.0
+margin_left = -20.0
+margin_top = 36.0
+margin_right = 1007.0
+margin_bottom = 242.0
+custom_fonts/font = SubResource( 1 )
 text = "Science Snail Game"
 align = 1
 valign = 1
@@ -38,6 +48,7 @@ margin_left = 396.0
 margin_top = 260.0
 margin_right = 588.0
 margin_bottom = 300.0
+custom_fonts/font = ExtResource( 3 )
 text = "Start"
 
 [node name="Settings" type="Button" parent="Title Screen"]
@@ -49,6 +60,7 @@ margin_left = 396.0
 margin_top = 308.0
 margin_right = 588.0
 margin_bottom = 348.0
+custom_fonts/font = ExtResource( 3 )
 text = "Settings"
 
 [node name="Credits" type="Button" parent="Title Screen"]
@@ -60,6 +72,7 @@ margin_left = 396.0
 margin_top = 356.0
 margin_right = 588.0
 margin_bottom = 396.0
+custom_fonts/font = ExtResource( 3 )
 text = "Credits"
 
 [node name="Exit" type="Button" parent="Title Screen"]
@@ -71,6 +84,7 @@ margin_left = 396.0
 margin_top = 404.0
 margin_right = 588.0
 margin_bottom = 444.0
+custom_fonts/font = ExtResource( 3 )
 text = "Exit"
 
 [node name="Settings" type="Control" parent="."]
@@ -91,6 +105,9 @@ margin_left = -8.0
 margin_top = -8.0
 margin_right = 216.0
 margin_bottom = 8.0
+max_value = 1.0
+step = 0.1
+value = 1.0
 
 [node name="Music SLider" type="HSlider" parent="Settings"]
 anchor_left = 0.5
@@ -101,6 +118,9 @@ margin_left = -8.0
 margin_top = 12.0
 margin_right = 216.0
 margin_bottom = 28.0
+max_value = 1.0
+step = 0.1
+value = 1.0
 
 [node name="SFX Slider" type="HSlider" parent="Settings"]
 anchor_left = 0.5
@@ -111,6 +131,9 @@ margin_left = -8.0
 margin_top = 36.0
 margin_right = 216.0
 margin_bottom = 52.0
+max_value = 1.0
+step = 0.1
+value = 1.0
 
 [node name="Master Label" type="Label" parent="Settings"]
 anchor_left = 0.5
@@ -248,5 +271,8 @@ text = "Back"
 [connection signal="pressed" from="Title Screen/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Title Screen/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Title Screen/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="value_changed" from="Settings/Master Slider" to="." method="_on_Master_Slider_value_changed"]
+[connection signal="value_changed" from="Settings/Music SLider" to="." method="_on_Music_SLider_value_changed"]
+[connection signal="value_changed" from="Settings/SFX Slider" to="." method="_on_SFX_Slider_value_changed"]
 [connection signal="pressed" from="Settings/Back" to="." method="_on_Back_pressed"]
 [connection signal="pressed" from="Credits/Back2" to="." method="_on_Back2_pressed"]

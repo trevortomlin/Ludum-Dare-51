@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/AudioManager.gd" type="Script" id=1]
+[ext_resource path="res://Sound/Sketch_No.6.mp3" type="AudioStream" id=2]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 2 )
+bus = "Music"
+
+[node name="AudioStreamPlayers" type="Node" parent="."]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="AudioStreamPlayers"]
+bus = "SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="AudioStreamPlayers"]
+bus = "SFX"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="AudioStreamPlayers"]
+bus = "SFX"
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="AudioStreamPlayers"]
+bus = "SFX"
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="AudioStreamPlayers"]
+bus = "SFX"
+
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="AudioStreamPlayers"]
+bus = "SFX"
+
+[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="AudioStreamPlayers"]
+bus = "SFX"

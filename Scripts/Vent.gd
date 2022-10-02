@@ -15,12 +15,14 @@ func _ready():
 	
 func interact():
 	if player:
+		AudioManager.in_vent()
 		in_vent = true
 		timer.start(vent_time)
 		Events.emit_signal("enter_vent", other_vent.global_position, vent_time)
 
 func _on_Timer_timeout():
 	in_vent = false
+	AudioManager.leave_vent()
 
 func timeout_vent_check():
 	if in_vent:
