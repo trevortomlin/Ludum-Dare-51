@@ -31,7 +31,7 @@ func advance():
 		Events.emit_signal("end_dialogue")
 		return
 	
-	dialogue_name.text = dialogues[dialogue_index]['name']
+	dialogue_name.text = dialogues[dialogue_index]['name'] + ":"
 	message.text = dialogues[dialogue_index]['message']
 	
 	var portrait_text = dialogues[dialogue_index]['portrait']

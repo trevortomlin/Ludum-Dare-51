@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Art/dialogueninepatchrect.png" type="Texture" id=1]
+[ext_resource path="res://Art/dialogue_ninepatch_rect.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/DialogueBox.gd" type="Script" id=2]
 [ext_resource path="res://Art/human_portrait.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/neuropol/NEUROPOL.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Resources/Font.tres" type="DynamicFont" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+use_filter = true
+font_data = ExtResource( 4 )
 
 [node name="Dialogue" type="CanvasLayer"]
 pause_mode = 2
@@ -14,33 +21,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 421.0
 texture = ExtResource( 1 )
-region_rect = Rect2( 0, 0, 9, 9 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+region_rect = Rect2( 13, 0, 471, 500 )
+patch_margin_left = 163
+patch_margin_top = 55
+patch_margin_right = 136
+patch_margin_bottom = 67
 
 [node name="Name" type="RichTextLabel" parent="DialogueBox"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 1014.0
-margin_bottom = 50.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+margin_left = 34.0
+margin_top = 35.0
+margin_right = 967.0
+margin_bottom = 68.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = ExtResource( 5 )
 text = "Name"
 fit_content_height = true
 
 [node name="Message" type="RichTextLabel" parent="DialogueBox"]
-margin_left = 10.0
-margin_top = 50.0
-margin_right = 1014.0
-margin_bottom = 169.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+margin_left = 34.0
+margin_top = 68.0
+margin_right = 967.0
+margin_bottom = 148.0
+custom_fonts/normal_font = SubResource( 1 )
 text = "Message"
 fit_content_height = true
 
 [node name="TextureRect" type="TextureRect" parent="DialogueBox"]
+margin_left = 34.0
 margin_top = -222.0
-margin_right = 225.0
+margin_right = 259.0
 margin_bottom = 3.0
 texture = ExtResource( 3 )
 expand = true

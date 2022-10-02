@@ -9,14 +9,16 @@ export (NodePath) var patrol_path
 
 var current_state = States.Idle
 
-var move_speed = 20
-var run_speed = 50
+var move_speed = 50
+var run_speed = 100
 
 var patrol_points
 var patrol_index = 0
 var velocity = Vector2.ZERO
 var target = null
 var start_pos := Vector2.ZERO
+
+onready var sprite := $Sprite
 
 func _ready():
 	randomize()
@@ -27,6 +29,8 @@ func _ready():
 		start_pos = global_position
 	
 func _process(delta):
+	
+	sprite.flip_h = velocity.x > 0
 	
 	if target: current_state = States.Chase
 	
@@ -41,12 +45,15 @@ func _process(delta):
 			chase()
 
 func idle():
+	sprite.play("Idle")
 	if global_position != start_pos:
+		sprite.play("Walking")
 		#print(global_position, start_pos)
 		velocity = (start_pos - global_position).normalized() * move_speed
 		velocity = move_and_slide(velocity)
 
 func patrol():
+	sprite.play("Walking")
 	var target = patrol_points[patrol_index]
 	if position.distance_to(target) < 1:
 		patrol_index = wrapi(patrol_index + 1, 0, patrol_points.size())
@@ -55,6 +62,7 @@ func patrol():
 	velocity = move_and_slide(velocity)
 
 func alert():
+	sprite.play("Idle")
 	yield(get_tree().create_timer(randi() % 2 + 5), "timeout")
 	if patrol:
 		current_state = States.Patrol
@@ -62,6 +70,7 @@ func alert():
 		current_state = States.Idle
 
 func chase():
+	sprite.play("Walking")
 	velocity = position.direction_to(target.position) * run_speed
 	velocity = move_and_slide(velocity)
 

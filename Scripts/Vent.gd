@@ -1,6 +1,7 @@
 extends Area2D
 
 export(NodePath) onready var other_vent = get_node(other_vent) as Node
+export(int) var vent_time := 3
 
 onready var timer = $Timer
 
@@ -15,8 +16,8 @@ func _ready():
 func interact():
 	if player:
 		in_vent = true
-		timer.start()
-		Events.emit_signal("enter_vent", other_vent.global_position, 5)
+		timer.start(vent_time)
+		Events.emit_signal("enter_vent", other_vent.global_position, vent_time)
 
 func _on_Timer_timeout():
 	in_vent = false

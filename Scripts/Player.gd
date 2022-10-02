@@ -38,6 +38,8 @@ func _ready():
 func die():
 	can_move = false
 	dead = true
+	#rotate(-PI/2)
+	#queue_free()
 	#yield(get_tree().create_timer(5), "timeout")
 	#get_tree().reload_current_scene()
 
@@ -76,7 +78,7 @@ func _physics_process(delta):
 	
 	if dead: return
 	
-	if Input.is_action_pressed("interact") and onvent and can_move:
+	if Input.is_action_pressed("interact") and onvent and can_move and current_state == States.Snail:
 		Events.emit_signal("interact")
 	
 	match current_state:
@@ -90,7 +92,7 @@ func vent_tween(pos, time):
 	add_child(tween)
 	tween.interpolate_property(self, "global_transform:origin",
 									 global_position, pos, time,
-									 Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
+									 Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	tween.start()
 	yield(tween, "tween_completed")
 	exit_vent()
