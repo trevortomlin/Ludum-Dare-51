@@ -19,7 +19,7 @@ dialogue_file = "res://Dialogue/test_dialogue.json"
 [node name="DialogueBox" type="NinePatchRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 421.0
+margin_top = 905.0
 texture = ExtResource( 1 )
 region_rect = Rect2( 13, 0, 471, 500 )
 patch_margin_left = 163
@@ -40,16 +40,16 @@ fit_content_height = true
 [node name="Message" type="RichTextLabel" parent="DialogueBox"]
 margin_left = 34.0
 margin_top = 68.0
-margin_right = 739.0
+margin_right = 1604.0
 margin_bottom = 148.0
 custom_fonts/normal_font = SubResource( 1 )
 text = "Message"
 fit_content_height = true
 
 [node name="Click" type="RichTextLabel" parent="DialogueBox"]
-margin_left = 759.0
+margin_left = 1637.0
 margin_top = 119.0
-margin_right = 1003.0
+margin_right = 1881.0
 margin_bottom = 148.0
 custom_fonts/normal_font = SubResource( 1 )
 text = "Click to advance..."

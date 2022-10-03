@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gstep6.wav-2900a0fbeea62d81a52c65c0f41dac06.sample"
+
+[deps]
+
+source_file="res://Sound/gstep6.wav"
+dest_files=[ "res://.import/gstep6.wav-2900a0fbeea62d81a52c65c0f41dac06.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

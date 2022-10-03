@@ -12,12 +12,19 @@ var current_state = States.Human
 
 onready var sprite_node := $Sprite
 onready var collision_shape := $CollisionShape2D
+onready var footstep_timer := $Footstep
 
 #var human_sprite = preload("res://Art/kenney_tinydungeon/Tiles/tile_0096.png")
 #var snail_sprite = preload("res://Art/kenney_tinydungeon/Tiles/tile_0121.png")
 
 var human_frames = preload("res://Resources/PlayerSpriteFrames.tres")
 var snail_frames = preload("res://Resources/SnailSpriteFrames.tres")
+	
+#var footstep_sound = preload("res://Sound/hstep1.wav")	
+
+var footstep_sounds = []
+
+var transformation_particles = preload("res://Scenes/Transformation Particles.tscn")	
 	
 #var human_sprite = preload("res://Art/human.png")
 #var snail_sprite = preload("res://Art/snail_1.png")
@@ -30,7 +37,12 @@ var snail_walk = false
 
 var accum_delta = 0.0
 
+func load_footsteps():
+	for x in range(1, 14):
+		footstep_sounds.append(load("res://Sound/hstep" + str(x) + ".wav"))
+
 func _ready():
+	load_footsteps()
 	Events.connect("ten_second_timeout", self, "switch_states")
 	Events.connect("player_died", self, "die")
 	Events.connect("enter_vent", self, "enter_vent")
@@ -59,13 +71,31 @@ func get_input():
 	velocity = velocity.normalized()
 	
 	if velocity == Vector2.ZERO:
+		#footstep_timer.stop()
+		AudioManager.snail_player.playing = false
 		sprite_node.play("Idle")
 		snail_walk = false
 	else:
 		if current_state != States.Snail:
+			
+			if AudioManager.snail_player.playing:
+				AudioManager.snail_player.stop()
+			
+			if footstep_timer.time_left == 0:
+				
+				var random_footstep = footstep_sounds[randi() % len(footstep_sounds)]
+				
+				AudioManager.play_sound(random_footstep, "SFX")
+				footstep_timer.start()
+				
 			sprite_node.play("Walking")
 			snail_walk = false
 		else:
+				
+			#AudioManager.snail_player.playing = true
+			if not AudioManager.snail_player.playing:
+				AudioManager.snail_player.play()
+
 			snail_walk = true
 
 func _physics_process(delta):
@@ -74,6 +104,7 @@ func _physics_process(delta):
 	
 	if snail_walk:
 		#print(sin(accum_delta))
+		
 		sprite_node.scale.x += sin(accum_delta * 10) * .003
 	
 	if dead: return
@@ -115,7 +146,12 @@ func move(speed):
 
 func switch_states():
 	can_move = false
-	yield(get_tree().create_timer(1), "timeout")
+	
+	var particles = transformation_particles.instance()
+	add_child(particles)
+	particles.emitting = true
+	
+	yield(get_tree().create_timer(.2), "timeout")
 	can_move = true
 	
 	if current_state == States.Human:

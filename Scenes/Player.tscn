@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Resources/PlayerSpriteFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Transformation Particles.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
@@ -45,7 +46,6 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 material = SubResource( 3 )
-position = Vector2( 6.99999, 6.99998 )
 scale = Vector2( 0.25, 0.25 )
 frames = ExtResource( 1 )
 animation = "Idle"
@@ -53,10 +53,18 @@ frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 8.5, 11.5 )
+position = Vector2( 0, 1 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 1.2, 1.2 )
 script = ExtResource( 3 )
+
+[node name="Transformation Particles" parent="." instance=ExtResource( 4 )]
+amount = 200
+lifetime = 1.0
+
+[node name="Footstep" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true

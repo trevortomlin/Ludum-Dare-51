@@ -2,6 +2,13 @@ extends Node
 
 onready var audioPlayers := $AudioStreamPlayers
 onready var musicPlayer := $Music
+onready var snail_player := $"Snail Sound"
+
+var snail_walk_sound = preload("res://Sound/snail trail.wav")
+
+func _ready():
+	AudioManager.snail_player.stream = snail_walk_sound
+	AudioManager.snail_player.bus = "SFX"
 
 func play_music(sound):
 	musicPlayer.stream = sound
