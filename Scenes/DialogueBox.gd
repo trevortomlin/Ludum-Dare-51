@@ -17,8 +17,9 @@ var finished := false
 func _ready():
 	
 	dialogues.append({"name":"Gale", "message":"How do we get out of this place?", "portrait":"Human"})
-	dialogues.append({"name":"Snail Gale", "message":"Hm... You run past the guards and I'll sneak through the vents.", "portrait":"Snail"})
+	dialogues.append({"name":"Snail Gale", "message":"Hm... You will run past the guards and I am small enough to sneak through the vents.", "portrait":"Snail"})
 	dialogues.append({"name":"Gale", "message":"Got it. I will open the doors.", "portrait":"Human"})
+	dialogues.append({"name":"Gale", "message":"But watch out... if you transform in the vent you will die.", "portrait":"Human"})
 	
 	play()
 	

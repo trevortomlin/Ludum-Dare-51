@@ -50,6 +50,7 @@ material = SubResource( 3 )
 scale = Vector2( 0.375, 0.375 )
 frames = ExtResource( 1 )
 animation = "Idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
