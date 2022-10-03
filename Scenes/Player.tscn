@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Resources/PlayerSpriteFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Transformation Particles.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Disintegrate Particles.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
@@ -49,7 +50,6 @@ material = SubResource( 3 )
 scale = Vector2( 0.25, 0.25 )
 frames = ExtResource( 1 )
 animation = "Idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -68,3 +68,6 @@ lifetime = 1.0
 [node name="Footstep" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
+
+[node name="Disintegrate Particles" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, -35 )

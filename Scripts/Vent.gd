@@ -14,7 +14,7 @@ func _ready():
 	Events.connect("interact", self, "interact")
 	
 func interact():
-	if player:
+	if player and player.current_state == player.States.Snail:
 		AudioManager.in_vent()
 		in_vent = true
 		timer.start(vent_time)

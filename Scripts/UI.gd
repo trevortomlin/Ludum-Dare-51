@@ -18,5 +18,6 @@ func _process(delta):
 	
 func death_screen():
 	#yield(get_tree().create_timer(1), "timeout")
+	progress_bar.hide()
 	dead = true
 	death_screen.show()

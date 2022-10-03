@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 1
+emission_sphere_radius = 30.0
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+color = Color( 0.956863, 0.615686, 0.615686, 1 )
+hue_variation = -0.3
+hue_variation_random = 1.0
+
+[node name="Disintegrate Particles" type="Particles2D"]
+emitting = false
+amount = 1000
+one_shot = true
+speed_scale = 1.2
+process_material = SubResource( 1 )

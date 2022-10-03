@@ -5,3 +5,4 @@ signal player_died
 signal interact
 signal enter_vent(pos, time)
 signal end_dialogue
+signal end_game

@@ -12,6 +12,8 @@ onready var portrait = $DialogueBox/TextureRect
 var human_portrait = preload("res://Art/human_portrait.png")
 var snail_portrait = preload("res://Art/snail_portrait.png")
 
+var finished := false
+
 func _ready():
 	play()
 	
@@ -26,9 +28,12 @@ func _input(event):
 
 func advance():
 	
+	if finished: return
+	
 	if dialogue_index >= len(dialogues):
 		hide()
 		Events.emit_signal("end_dialogue")
+		finished = true
 		return
 	
 	dialogue_name.text = dialogues[dialogue_index]['name'] + ":"
