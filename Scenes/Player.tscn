@@ -70,4 +70,4 @@ wait_time = 0.4
 one_shot = true
 
 [node name="Disintegrate Particles" parent="." instance=ExtResource( 5 )]
-position = Vector2( 0, -35 )
+position = Vector2( 0, -40 )

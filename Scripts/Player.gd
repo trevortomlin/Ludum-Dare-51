@@ -60,8 +60,10 @@ func die():
 	#rotate(-PI/2)
 	#queue_free()
 	
+	sprite_node.visible = false
+	
 	var particles = disintegrate_particles.instance()
-	particles.global_position = global_position
+	particles.global_position = Vector2(0, -20)
 	add_child(particles)
 	particles.emitting = true
 	
