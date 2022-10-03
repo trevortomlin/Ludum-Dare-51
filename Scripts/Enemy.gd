@@ -10,7 +10,7 @@ export (NodePath) var patrol_path
 var current_state = States.Idle
 
 var move_speed = 100
-var run_speed = 200
+var run_speed = 150
 
 var patrol_points
 var patrol_index = 0

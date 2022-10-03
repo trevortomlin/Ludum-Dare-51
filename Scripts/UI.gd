@@ -2,13 +2,16 @@ extends CanvasLayer
 
 onready var progress_bar := $ProgressBar
 onready var death_screen := $Death
+onready var end_game := $"End Game"
 
 var dead := false
 
 func _ready():
 	death_screen.hide()
+	end_game.hide()
 	progress_bar.value = 10
 	Events.connect("player_died", self, "death_screen")
+	Events.connect("end_game", self, "end_game")
 
 func _process(delta):
 	#print(dead)
@@ -21,3 +24,7 @@ func death_screen():
 	progress_bar.hide()
 	dead = true
 	death_screen.show()
+
+func end_game():
+	dead = true
+	end_game.show()

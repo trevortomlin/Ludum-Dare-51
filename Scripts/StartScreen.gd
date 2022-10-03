@@ -9,14 +9,17 @@ func _ready():
 	AudioManager.play_music(music)
 			
 func show_screen(idx: int):
+	
+	if idx == 0:
+		$Bg.self_modulate.a = 1
+	else:
+		$Bg.self_modulate.a = .25
+	
 	for index in range(len(screens)):
 		if index == idx:
 			screens[index].show()
 		else:
 			screens[index].hide()
-
-func _on_Start_pressed():
-	get_tree().change_scene("res://Scenes/World.tscn")
 
 func _on_Settings_pressed():
 	show_screen(1)
@@ -43,3 +46,6 @@ func _on_Music_SLider_value_changed(value):
 
 func _on_SFX_Slider_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear2db(value))
+
+func _on_Start_pressed():
+	get_tree().change_scene("res://Scenes/World.tscn")

@@ -15,10 +15,15 @@ var snail_portrait = preload("res://Art/snail_portrait.png")
 var finished := false
 
 func _ready():
+	
+	dialogues.append({"name":"Gale", "message":"How do we get out of this place?", "portrait":"Human"})
+	dialogues.append({"name":"Snail Gale", "message":"Hm... You run past the guards and I'll sneak through the vents.", "portrait":"Snail"})
+	dialogues.append({"name":"Gale", "message":"Got it. I will open the doors.", "portrait":"Human"})
+	
 	play()
 	
 func play():
-	dialogues = load_dialogue()
+	#dialogues = load_dialogue()
 	advance()
 	
 func _input(event):

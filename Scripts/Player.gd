@@ -40,6 +40,7 @@ var snail_walk = false
 var accum_delta = 0.0
 
 func end_game():
+	yield(get_tree().create_timer(1), "timeout")
 	visible = false
 
 func load_footsteps():
