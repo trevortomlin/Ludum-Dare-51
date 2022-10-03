@@ -1,4 +1,4 @@
-# Ludum-Dare-51
+# Snail Gale
 
 ![blanktitle.png](Art/blanktitle.png)
 Your name is Gale and you turn into a snail every 10 seconds. Find a way to escape the lab without getting caught!
